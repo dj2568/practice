@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:practice/CustomSwitch/custom_switch.dart';
 import 'package:practice/NightMode/DarkThemePreference.dart';
 import 'package:practice/NightMode/main_screen.dart';
 
@@ -12,6 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      home: CustomSwitch(),
+    );
     final isPlatformDark = WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
     final initTheme = isPlatformDark ? darkTheme : lightTheme;
     return ThemeProvider(
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: myTheme,
-          home: const MyHomePage(),
+          home: const CustomSwitch(),
         );
       },
     );
