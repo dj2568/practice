@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
           "Profile Page",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        elevation: 0.5,
+        elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: BoxDecoration(

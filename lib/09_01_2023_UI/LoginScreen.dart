@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  double headerHeight = 250;
+  double headerHeight = 300;
   Key formKey = GlobalKey<FormState>();
 
   @override
