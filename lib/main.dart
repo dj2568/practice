@@ -6,6 +6,7 @@ import 'package:practice/09_01_2023_UI/SplashScreen.dart';
 import 'package:practice/CustomSwitch/custom_switch.dart';
 import 'package:practice/NightMode/DarkThemePreference.dart';
 import 'package:practice/NightMode/main_screen.dart';
+import 'package:practice/ShimmerEffect/shimmer_effect_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Shimmer',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // primaryColor: _primaryColor,
+        scaffoldBackgroundColor: Colors.grey.shade100,
+        // colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(secondary: _accentColor),
+        primarySwatch: Colors.blue,
+      ),
+      home: const ShimmerEffectScreen(),
+    );
+
     Color _primaryColor = HexColor('#FF7B54');
     Color _accentColor = HexColor('#FFB26B');
     return MaterialApp(
