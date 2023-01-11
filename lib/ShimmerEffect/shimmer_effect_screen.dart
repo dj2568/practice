@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice/ShimmerEffect/dataFile.dart';
 import 'package:practice/ShimmerEffect/skeleton.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ShimmerEffectScreen extends StatefulWidget {
   const ShimmerEffectScreen({Key? key}) : super(key: key);
@@ -9,7 +10,8 @@ class ShimmerEffectScreen extends StatefulWidget {
   State<ShimmerEffectScreen> createState() => _ShimmerEffectScreenState();
 }
 
-class _ShimmerEffectScreenState extends State<ShimmerEffectScreen> {
+class _ShimmerEffectScreenState extends State<ShimmerEffectScreen>
+    with SingleTickerProviderStateMixin {
   var listData = [];
 
   bindData() {
@@ -30,15 +32,29 @@ class _ShimmerEffectScreenState extends State<ShimmerEffectScreen> {
       appBar: AppBar(
         title: const Text('Flutter Shimmer Effect'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  listData = [];
+                });
+                Future.delayed(const Duration(seconds: 5), () => bindData());
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
       body: listData.isEmpty
-          ? ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (_, index) {
-                return const NewCardSkeleton();
-              },
+          ? Shimmer.fromColors(
+              baseColor: Colors.grey,
+              highlightColor: Colors.white,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (_, index) {
+                  return const NewCardSkeleton();
+                },
+              ),
             )
           : ListView.builder(
               physics: const BouncingScrollPhysics(),
@@ -80,7 +96,8 @@ class _ShimmerEffectScreenState extends State<ShimmerEffectScreen> {
                           const SizedBox(height: 5.0),
                           Text(
                             listData[index]['name'].toString(),
-                            style: const TextStyle(color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 5.0),
                           Row(
@@ -103,5 +120,3 @@ class _ShimmerEffectScreenState extends State<ShimmerEffectScreen> {
     );
   }
 }
-
-
